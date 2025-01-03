@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import Button from '@/components/ui/button/Button.vue'
 import {
   Select,
@@ -16,8 +16,28 @@ const operatingHours = ref<{ start_time: string; end_time: string }>({
   start_time: '',
   end_time: '',
 })
-
 const operationalDays = ref<string[]>([])
+const emit = defineEmits<{
+  (
+    event: 'sendTimeframe',
+    payload: {
+      operational_days: string[]
+      operational_time: { start_time: string; end_time: string }
+    },
+  ): void
+}>()
+
+const sendTimeframe = () => {
+  emit('sendTimeframe', {
+    operational_days: operationalDays.value,
+    operational_time: operatingHours.value,
+  })
+}
+
+watch(operatingHours, () => {
+  sendTimeframe()
+})
+
 const toggleOperationalDays = (day: string) => {
   console.log(operatingHours.value)
   if (operationalDays.value.includes(day)) {
@@ -25,6 +45,7 @@ const toggleOperationalDays = (day: string) => {
   } else {
     operationalDays.value.push(day)
   }
+  sendTimeframe()
 }
 </script>
 <template>
