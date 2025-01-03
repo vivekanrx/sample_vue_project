@@ -3,16 +3,21 @@ import { Sunrise, Moon, Plus } from 'lucide-vue-next'
 import { Separator } from '@/components/ui/separator'
 import Details from './serviceForms/Details.vue';
 import TimeFrames from './serviceForms/TimeFrames.vue';
+import Button from '@/components/ui/button/Button.vue';
+import { ChevronDown, ChevronUp } from 'lucide-vue-next';
+import { ref } from 'vue';
+const detailsVisible = ref(true)
 </script>
 <template>
   <div class="space-y-4 rounded-lg shadow-lg py-4 px-6 border border-gray-200">
-    <div>
+    <div class="flex justify-between">
       <h3 class="font-medium text-gray-700">Service details</h3>
+      <Button @click="detailsVisible = true" stroke-width="3" variant="outline" class="p-3 rounded-full border-none hover:none" v-show="!detailsVisible"><ChevronDown/></Button>
+      <Button @click="detailsVisible = false" stroke-width="3" variant="outline" class="p-3 rounded-full border-none hover:none" v-show="detailsVisible"><ChevronUp/></Button>
     </div>
 
-    <div class="flex flex-col gap-3 mt-2 space-y-3">
+    <div v-show="detailsVisible" class="flex flex-col gap-3 mt-2 space-y-3">
       <!-- Name & Icon -->
-      
         <Details/>
       <div class="relative">
         <span
