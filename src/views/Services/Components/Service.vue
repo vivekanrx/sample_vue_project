@@ -7,6 +7,14 @@ import Button from '@/components/ui/button/Button.vue';
 import { ChevronDown, ChevronUp } from 'lucide-vue-next';
 import { ref } from 'vue';
 const detailsVisible = ref(true)
+type DetailsData = {
+  name: string
+  time: 'day' | 'night' | undefined
+}
+const settingDetailsData = (data: DetailsData) => {
+//   console.log(data)
+}
+
 </script>
 <template>
   <div class="space-y-4 rounded-lg shadow-lg py-4 px-6 border border-gray-200">
@@ -18,7 +26,7 @@ const detailsVisible = ref(true)
 
     <div v-show="detailsVisible" class="flex flex-col gap-3 mt-2 space-y-3">
       <!-- Name & Icon -->
-        <Details/>
+        <Details @send-details="settingDetailsData"/>
       <div class="relative">
         <span
           class="absolute bg-white font-bold z-10 top-1/2 transform -translate-y-1/2 text-xs text-gray-500"

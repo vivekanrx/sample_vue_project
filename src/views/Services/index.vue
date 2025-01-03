@@ -19,7 +19,7 @@ onMounted(() => {
 // };
 </script>
 <template>
-  <div class="max-w-xl mx-auto bg-white rounded-lg space-y-6 py-2">
+  <div class="mx-auto bg-white rounded-lg space-y-6 py-2">
     <h2 class="font-bold text-2xl my-3">Service setup</h2>
     <!-- Header -->
     <InfoAlert v-if="alertContent"/>

@@ -3,7 +3,7 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { AlertCircle, X } from 'lucide-vue-next'
 import Button from '@/components/ui/button/Button.vue';
 import { useAlertContent } from '@/stores/shared';
-const hideAlertContent = useAlertContent().hideAlertContent
+const { hideAlertContent } = useAlertContent()
 </script>
 
 <template>

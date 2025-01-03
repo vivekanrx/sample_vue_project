@@ -12,6 +12,6 @@ export const useAlertContent = defineStore('alertContent', () => {
   return {
     alertContent,
     hideAlertContent,
-    showAlertContent
-}
+    showAlertContent,
+  }
 })
