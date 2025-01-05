@@ -21,6 +21,7 @@ const servicesCreated = () => {
     title: 'Success',
     description: 'Service has been created successfully',
   })
+  services.value = []
 }
 onMounted(() => {
   // console.log(alertContent.value)

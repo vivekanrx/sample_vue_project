@@ -14,6 +14,21 @@ const serviceSchema = z.object({
         ),
       });
 
+      const createServiceSchema = serviceSchema.partial();
 
-type Service = z.infer<typeof serviceSchema>
-export { serviceSchema, type Service }
+type CreateService = z.infer<typeof createServiceSchema>
+
+const initService = {
+  name: '',        
+//   time: undefined,
+  timeframes: [
+        {
+          operating_days: [],
+          operating_hours: {
+            start_time: '',
+            end_time: '',
+          },
+        }
+  ],
+}
+export { serviceSchema, type CreateService, initService }

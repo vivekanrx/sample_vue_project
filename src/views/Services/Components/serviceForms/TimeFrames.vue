@@ -8,10 +8,13 @@ const timeFrames = ref([1])
 const addingNewTimeFrame = () => {
   timeFrames.value.push(timeFrames.value.length + 1)
 }
+const deletingTimeFrame = (index: number) => {
+  timeFrames.value = timeFrames.value.filter((_, i) => i !== index)
+}
 </script>
 <template>
-  <div v-for="frame in timeFrames" :key="frame">
-    <TimeFrame/>
+  <div v-for="(frame, index) in timeFrames" :key="index">
+    <TimeFrame @send-timeframe="() => {}" :timeframeIndex="index" @delete-timeframe="deletingTimeFrame(index)"/>
     <!-- Add Timeframe -->
     <Separator class="mt-4"/>
   </div>

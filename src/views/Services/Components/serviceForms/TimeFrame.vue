@@ -11,6 +11,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { useTimeframeContent } from '@/stores/shared/useTimeframeContent'
+import { Trash2 } from 'lucide-vue-next'
 const { days, times } = useTimeframeContent()
 const operatingHours = ref<{ start_time: string; end_time: string }>({
   start_time: '',
@@ -24,7 +25,15 @@ const emit = defineEmits<{
       operational_days: string[]
       operational_time: { start_time: string; end_time: string }
     },
-  ): void
+  ): void;
+  (
+    event: 'deleteTimeframe',
+    payload: null,
+  ): void;
+}>()
+
+const props = defineProps<{
+        timeframeIndex:number
 }>()
 
 const sendTimeframe = () => {
@@ -51,8 +60,16 @@ const toggleOperationalDays = (day: string) => {
 <template>
   <div class="flex flex-col gap-3">
     <div>
-      <h4 class="text-md font-medium text-gray-700">Operating days</h4>
-      <p class="text-sm text-gray-500">Mark the days this service operates.</p>
+      <div class="flex justify-between items-center">
+        <div>
+          <h4 class="text-md font-medium text-gray-700">Operating days</h4>
+          <p class="text-sm text-gray-500">Mark the days this service operates.</p>
+        </div>
+        <div>
+          <Button @click="emit('deleteTimeframe', null)" v-show="props.timeframeIndex !== 0" variant="destructive" class="rounded-full p-3"><Trash2 /></Button>
+        </div>
+      </div>
+
       <div class="mt-2 flex gap-2">
         <button
           v-for="day in days"
